@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } 
+    from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 
@@ -10,28 +11,35 @@ import { ProductService } from '../../services/product.service';
 })
 export class DetailCateComponent implements OnInit {
 
-  constructor(
+ constructor(
     private route: ActivatedRoute,
     private router: Router,
     private cateService: CategoryService,
     private productService: ProductService
   ) { }
-  products: [];
+  products:any[];
   category: {};
   cateId: string;
+
   ngOnInit() {
     this.cateId = this.route.snapshot.params.id;
+    console.log(this.cateId);
     this.cateService.getCategoryById(this.cateId)
       .subscribe(data => {
         this.category = data;
+        
       });
-    this.productService.getListProduct(this.cateId)
+
+     this.productService.getListProduct(this.cateId)
       .subscribe(data => {
         this.products = data;
       });
-  }
-  removeProduct(product) {
-    const conf = confirm(`Bạn có chắc chắn muốn xóa danh mục ${product.name} ?`);
+
+
+       }
+
+        removeProduct(product) {
+   const conf = confirm(`Bạn có chắc chắn muốn xóa danh mục ${product.name} ?`);
     if (conf) {
       this.productService.removeProduct(this.cateId, product.id)
         .subscribe(data => {
@@ -39,5 +47,4 @@ export class DetailCateComponent implements OnInit {
         });
     }
   }
-
 }

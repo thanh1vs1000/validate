@@ -43,9 +43,9 @@ export class AddProductComponent implements OnInit {
         Validators.min(1),
         Validators.max(100)
       ]),
-    // status: new FormControl('',[
-    //   Validators.required
-    //   ]),
+    status: new FormControl('',[
+      Validators.required
+      ]),
   });
   ngOnInit() {
     this.cateId = this.route.snapshot.params.cateId;
@@ -55,7 +55,7 @@ export class AddProductComponent implements OnInit {
     get price() {return this.product.get('price')}
     get detail() {return this.product.get('detail')}
     get amount() {return this.product.get('amount')}
-    // get status() {return this.product.get('status')}
+    get status() {return this.product.get('status')}
 
   saveProduct() {
     if (this.product.valid) {
@@ -68,8 +68,8 @@ export class AddProductComponent implements OnInit {
        this.product.value.price=""
        this.product.value.detail=""
        this.product.value.amount=""
-       // this.product.value.status=""
-        cate_id:this.cateId
+       this.product.value.status=""
+      this.product.value.cate_id = this.cateId
 
        this.router.navigate(['/']);
       });
