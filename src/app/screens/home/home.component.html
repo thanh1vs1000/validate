@@ -1,0 +1,18 @@
+<div class="row p-3">
+  <a routerLink="/category/add" class="btn btn-sm btn-success">Thêm mới</a>
+</div>
+<div class='row'>
+  <div class="col-4 my-2" *ngFor='let cate of categories'>
+    <div class="card" style="width: 18rem;">
+      <a routerLink="category/{{cate.id}}"><img class="card-img-top" [src]="cate.image" [alt]="cate.name"></a>
+      <div class="card-body text-center">
+        <a routerLink="category/{{cate.id}}"><h5 class="card-title">{{cate.name}}</h5></a>
+        <a routerLink="category/edit/{{cate.id}}" class="btn btn-sm btn-info mx-1">Sửa</a>
+        <button type="button"
+                (click)="removeCategory(cate)"
+                class="btn btn-sm btn-danger mx-1">
+          Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-6 offset-sm-3">
+    <div class="text-center">
+      <h3>Tạo mới sản phẩm</h3>
+    </div>
+    <form [formGroup]="product">
+    <div class="form-group">
+      <label for="">Tên sản phẩm</label>
+      <input type="text"
+           formControlName="name"
+            class="form-control">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="name.errors.required">
+            Vui lòng điền tên danh mục
+          </div>
+          <div *ngIf="name.errors.minength">
+            Tên danh mục không đc ít hơn 4 ký tự
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            Tên danh mục không vượt quá 20 ký tự
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+          <img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="product.value.image == ''" class="img-fluid">
+          <img [src]="product.value.image" *ngIf="product.value.image != ''" class="img-fluid">
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="">Ảnh danh mục</label>
+      <input type="text" 
+            formControlName="image" 
+            class="form-control">
+        <div *ngIf="image.invalid && (image.dirty || image.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="image.errors.required">
+            Vui lòng nhập đường dẫn ảnh
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="">Giá</label>
+      <input type="number"
+              formControlName="price" 
+             class="form-control">
+          <div *ngIf="price.invalid && (price.dirty || price.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="price.errors.required">
+            Vui lòng nhập giá
+          </div>
+          <div *ngIf="price.errors.min">
+           Giá tối thiểu 1000đ
+          </div>
+          <div *ngIf="price.errors.max">
+            Giá tối đa là 10.000.000đ
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="">Thông tin</label>
+        <input type="text"
+              formControlName="detail" 
+             class="form-control">
+          <div *ngIf="detail.invalid && (detail.dirty || detail.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="detail.errors.required">
+            Vui lòng nhập thông tin
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="">Số lượng</label>
+        <input type="number"
+              formControlName="amount" 
+             class="form-control">
+          <div *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="amount.errors.required">
+            Vui lòng nhập số lượng
+          </div>
+          <div *ngIf="amount.errors.min">
+           Tối thiểu 1
+          </div>
+          <div *ngIf="amount.errors.max">
+            Tối đa 100 sản phẩm
+          </div>
+        </div>
+    </div>
+    <!-- <div class="form-group">
+      <label for="">Trạng thái</label>
+      <select
+        formControlName="status" 
+             class="form-control"
+        >
+          <option>false</option>
+          <option>Hiện</option>
+      </select> 
+    </div> -->
+    <div class="text-center">
+      <button 
+      [disabled]="product.invalid" 
+           type="button"
+              (click)="saveProduct()"
+              class="btn btn-sm btn-success">Lưu</button>
+      <a routerLink="/" class="btn btn-sm btn-danger">Hủy</a>
+    </div>
+  </form>
+  </div>
+</div>
+<div>
+  {{product.name.value | json}}
+  {{product.image.value | json}}
+</div>

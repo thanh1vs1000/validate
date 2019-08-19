@@ -1,0 +1,33 @@
+<div class="row px-5">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img [src]="category.image" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body p-5">
+          <h5 class="card-title">{{category.name}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row p-3">
+  <a routerLink="/category/{{category.id}}/add" class="btn btn-sm btn-success">Thêm mới</a>
+</div>
+<div class='row'>
+  <div class="col-4 my-2" *ngFor='let product of products'>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="product.image" [alt]="product.name" width="300" height="300">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{product.name}}</h5>
+        <h3 class="card-text text-primary">${{product.price}}</h3>
+        <a routerLink="edit/{{product.id}}" class="btn btn-sm btn-info mx-1">Sửa</a>
+        <button type="button"
+                (click)="removeProduct(product)"
+                class="btn btn-sm btn-danger mx-1">
+          Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-6 offset-sm-3">
+    <div class="text-center">
+      <h3>Tạo mới sản phẩm</h3>
+    </div>
+    <form [formGroup]="productForm">
+    <div class="form-group">
+      <label for="">Tên sản phẩm</label>
+      <input type="text"
+             formControlName="name"
+             class="form-control">
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="productForm.value.image == ''" class="img-fluid">
+        <img [src]="productForm.value.image" *ngIf="productForm.value.image != ''" class="img-fluid">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Ảnh danh mục</label>
+      <input type="text"
+             formControlName="image"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Giá</label>
+      <input type="text"
+             formControlName="price"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Thông tin</label>
+      <input type="text"
+             formControlName="detail"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Số lượng</label>
+      <input type="text"
+             formControlName="amount"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Trạng thái</label>
+      <input type="text"
+             formControlName="status"
+             class="form-control">
+    </div>
+    <div class="text-center">
+      <button type="button"
+              (click)="saveProduct()"
+              class="btn btn-sm btn-success mx-1">Lưu</button>
+      <a routerLink="/" class="btn btn-sm btn-danger mx-1">Hủy</a>
+    </div>
+    </form>
+  </div>
+</div>
+<div>
+  {{productForm.name.value | json}}
+  {{productForm.image.value | json}}
+</div>
